@@ -29,13 +29,14 @@
 
   <div class="container">
 
-  <h1 style="font-size:30px; text-align:left">Thank You</h1><hr>
+  <h1 style="font-size:30px; text-align:left">Admin-Confirm</h1><hr>
  
     
-    Thank You:<?php echo $_GET["email"]; ?><br><br>
-    We will contact you about the: <br>
-    <?php echo $_GET["location"]; ?> trip on the <?php echo $_GET["date"]; ?>
+    Data has added successfully to DB <br><br><br><br>
 
+
+    <h2><a href="#">View All Adventures</a></h2>
+    
     
 
 
