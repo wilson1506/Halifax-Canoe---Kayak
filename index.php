@@ -12,9 +12,10 @@
   <div class="navbar">
   <div id="mySidepanel" class="sidepanel">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <a href="index.html">Home</a>
-    <a href="book.html">Book Trip</a>
-    <a href="admin-add.html">Admin Login</a>
+    <a href="index.php">Home</a>
+    <a href="book.php">Book Trip</a>
+    <a href="admin-login.php">Admin Login</a>
+    
   </div>
 
   <button class="openbtn" onclick="openNav()">&#9776;</button>

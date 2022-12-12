@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,9 +15,9 @@
   <div class="navbar">
     <div id="mySidepanel" class="sidepanel">
       <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-      <a href="index.html">Home</a>
-      <a href="book.html">Book Trip</a>
-      <a href="admin-add.html">Admin Login</a>
+      <a href="index.php">Home</a>
+      <a href="book.php">Book Trip</a>
+      <a href="admin-login.php">Admin Login</a>
     </div>
   
     <button class="openbtn" onclick="openNav()">&#9776;</button>
@@ -31,30 +32,20 @@
 
   <div class="container">
 
-    <h1 style="font-size:30px; text-align:left">Upcoming Adventures</h1><hr>
-    <h5 style="text-align:left">Just Some Quick Details</h5>
+    <h1 style="font-size:30px; text-align:left">Admin- Add Adventure</h1><hr>
+    <h5 style="text-align:left">Input details about the trip</h5>
     
-    <form action="thank.php" method="GET">
+    <form action="admin-confirm.php" method="post">
       <div >
         <div class="col-25">
-          <label for="email">Email</label>
+          <label for="heading">Heading</label>
         </div>
         <div class="col-75">
-          <input type="text" id="email" name="email">
+          <input type="text" id="heading" name="heading">
         </div>
       </div>
     
-      <div >
-        <div class="col-25">
-          <label for="location">Location</label>
-        </div>
-        <div class="col-75">
-          <select id="location" name="location">
-            <option value="Halifax">Halifax</option>
-            <option value="Sydney">Sydney</option>
-          </select>
-        </div>
-      </div>
+      
       
       
       <div >
@@ -62,7 +53,26 @@
           <label for="date">Date</label>
         </div>
         <div class="col-75">
-          <input style="width:200px; height: 40px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;" type="date" id="date" name="date"> 
+          <input style="width:200px; height: 40px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;" type="date" id="date" name="tripdate"> 
+        </div>
+      </div>
+
+      <div >
+        <div class="col-25">
+          <label for="duration">Duration</label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="duration" name="duration">
+        </div>
+      </div>
+
+
+      <div >
+        <div class="col-25">
+          <label for="summary">Summary</label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="summary" name="summary">
         </div>
       </div>
       
@@ -74,8 +84,12 @@
   </div>
 
 
+
 <script src="index.js"></script>
 </body>
 </html>
+
+
+
 
 
