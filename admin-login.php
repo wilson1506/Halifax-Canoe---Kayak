@@ -1,74 +1,73 @@
 
 <?php
-/*
-    $dbhost = "localhost";
-    $dbuser = "root";
-    $dbname ="halifax";
+  //data staging
+	$username = $_POST['username'];
+	$password = $_POST['password'];
 	
-	// Database connection
-	if(!$con = mysqli_connect($dbhost, $dbuser, $dbname ))
+  // Database connection
+	$conn = new mysqli('localhost','root','','halifax');
+	if($conn->connect_error){
+		echo "$conn->connect_error";
+		die("Connection Failed : ". $conn->connect_error);
+	} else {
+		$query = "SELECT * FROM admin_users WHERE username = '$username' AND password = '$password'";
+    $result = mysqli_query($conn, $query);
+    if($result && mysqli_num_rows($result)> 0)
     {
-        die("failed to connect!");
+      $user_data = mysqli_fetch_assoc($result);
+        return $user_data;
     }
-*/
+      
+		$conn->close();
+	}
 ?>
 
-    
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="book.css">
-    <link rel="stylesheet" href="index.css">
-    <title>Halifax Canoe & Kayak</title>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="index.css">
+      <title>Halifax Canoe & Kayak</title>
+    
     <style>
-body {font-family: Arial, Helvetica, sans-serif;}
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      input[type=text], input[type=password] {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+      }
+      button {
+        background-color: #04AA6D;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+      }
+      button:hover {
+        opacity: 0.8;
+      }
+      span.psw {
+        float: right;
+        padding-top: 16px;
+      }
 
-
-input[type=text], input[type=password] {
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  box-sizing: border-box;
-}
-
-button {
-  background-color: #04AA6D;
-  color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-}
-
-button:hover {
-  opacity: 0.8;
-}
-
-
-
-
-span.psw {
-  float: right;
-  padding-top: 16px;
-}
-
-/* Change styles for span and cancel button on extra small screens */
-@media screen and (max-width: 300px) {
-  span.psw {
-     display: block;
-     float: none;
-  }
-  
-}
-</style>
-
-
-
+      /* Change styles for span and cancel button on extra small screens */
+      @media screen and (max-width: 300px) {
+        span.psw {
+          display: block;
+          float: none;
+        }
+      }
+    </style>
+    </head>
     
 <body>
 
@@ -99,15 +98,15 @@ span.psw {
 
 
 
-<form action="admin-add.php" method="post">
+<form action="admin-add.php" method="POST">
   
 
   <div class="container">
     <label for="uname"><b>Username</b></label>
-    <input type="text" placeholder="Enter Username" name="uname" required>
+    <input type="text" placeholder="Enter Username" name="username" required>
 
     <label for="psw"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="psw" required>
+    <input type="password" placeholder="Enter Password" name="password" required>
         
     <button type="submit">Login</button>
     
@@ -120,3 +119,5 @@ span.psw {
 <script src="index.js"></script>
 </body>
 </html>
+
+
