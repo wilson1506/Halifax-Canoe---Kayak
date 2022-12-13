@@ -1,4 +1,8 @@
-<!-- Cleaned up-->
+<?php
+$conn = mysqli_connect("localhost", "root", "", "halifax");
+$result = mysqli_query($conn, "SELECT * FROM content");
+?>
+
 <!DOCTYPE html>
   <html lang="en">
     <head>
@@ -85,8 +89,14 @@
         </div>
         <div class="col-75">
           <select id="location" name="location">
-            <option value="Halifax">Halifax</option>
-            <option value="Sydney">Sydney</option>
+            <?php
+              while($r = mysqli_fetch_array($result))
+              {
+              ?>
+                <option> <?php echo $r['heading']; ?></option>
+              <?php
+              }
+            ?>
           </select>
         </div>
       </div>
@@ -97,13 +107,13 @@
           <label for="tripdate">Date</label>
         </div>
         <div class="col-75">
-          <input style="width:200px; height: 40px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;" type="date" id="tripdate" name="tripdate"> 
+          <input style="width:200px; height: 40px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;" type="date" id="tripdate" name="tripdate" >
         </div>
       </div>
       
 
-      <div >
-        <input type="submit" value="Submit">
+      <div>
+        <input type= "submit" value="Submit">
       </div>
     </form>
   </div>
@@ -111,5 +121,3 @@
   <script src="index.js"></script>
 </body>
 </html>
-
-

@@ -33,48 +33,36 @@
           <h1 style="font-size:30px; text-align:left">Admin- Booking Request</h1><hr>
         
           <?php
-// Connect to the database
-$db = mysqli_connect("localhost", "root", "", "halifax");
 
-// Check for connection errors
-if (mysqli_connect_errno()) {
-    echo "Failed to connect to MySQL: " . mysqli_connect_error();
-    exit();
-}
+            $db = mysqli_connect("localhost", "root", "", "halifax");
+            if (mysqli_connect_errno()) {
+              echo "Failed to connect to MySQL: " . mysqli_connect_error();
+              exit();
+            }
+            $result = mysqli_query($db, "SELECT * FROM user_content");
+            if (!$result) {
+              echo "Failed to query the database: " . mysqli_error($db);
+              exit();
+            }
+            echo "<table>";
+            echo "<tr><th>Id</th><th>Email</th><th>Location</th><th>TripDate</th></tr>";
+              while ($row = mysqli_fetch_assoc($result)) {
+                echo "<tr>";
+                echo "<td>" . $row["id"] . "</td>";
+                echo "<td>" . $row["email"] . "</td>";
+                echo "<td>" . $row["location"] . "</td>";
+                echo "<td>" . $row["tripdate"] . "</td>";
+                echo "</tr>";
+              }
+              echo "</table>";
 
-// Select all data from the "employees" table
-$result = mysqli_query($db, "SELECT * FROM user_content");
-
-// Check for query errors
-if (!$result) {
-    echo "Failed to query the database: " . mysqli_error($db);
-    exit();
-}
-
-// Print the data in an HTML table
-echo "<table>";
-echo "<tr><th>Id</th><th>Email</th><th>Location</th><th>TripDate</th></tr>";
-while ($row = mysqli_fetch_assoc($result)) {
-    echo "<tr>";
-    echo "<td>" . $row["id"] . "</td>";
-    echo "<td>" . $row["email"] . "</td>";
-    echo "<td>" . $row["location"] . "</td>";
-    echo "<td>" . $row["tripdate"] . "</td>";
-    echo "</tr>";
-}
-echo "</table>";
-
-// Close the connection to the database
-mysqli_close($db);
-?>
-
-    
-        </main>
-
-        <script src="index.js"></script>
+            mysqli_close($db);
+          ?>
+       </main>
+       <script src="index.js"></script>
 
       </body>
-    </html>
+  </html>
 
 
 
