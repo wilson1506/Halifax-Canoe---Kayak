@@ -26,6 +26,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="index.css">
     <title>Halifax Canoe & Kayak</title>  
+	<style>
+        .container {
+          border-radius: 5px;
+          padding: 20px;
+        }
+      </style>
 </head>  
 	
 	<body>

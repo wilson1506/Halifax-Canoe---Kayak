@@ -56,9 +56,9 @@
         <div class="navbar">
           <div id="mySidepanel" class="sidepanel" >
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-            <a href="index.php">Home</a>
-            <a href="book.php">Book Trip</a>
-            <a href="admin-login.php">Admin Login</a>
+            <a href="admin-booking.php">Booking Request</a>
+            <a href="admin-del.php">Delete an Adventure</a>
+            <a href="index.php">Logout</a>
           </div>
           <button class="openbtn" onclick="openNav()">&#9776;</button>
           <h1 class="logo-heading">Halifax Canoe & Kayak</h1>
@@ -81,10 +81,10 @@
     
             <div >
               <div class="col-25">
-                <label for="date">Date</label>
+                <label for="tripdate">Date</label>
               </div>
               <div class="col-75">
-                <input style="width:200px; height: 40px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;" type="date" id="date" name="tripdate"> 
+                <input style="width:200px; height: 40px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;" type="date" id="tripdate" name="tripdate"> 
               </div>
             </div>
 

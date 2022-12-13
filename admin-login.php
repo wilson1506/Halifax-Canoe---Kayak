@@ -1,25 +1,27 @@
-
+<!-- Cleaned up-->
 <?php
-  //data staging
-	$username = $_POST['username'];
+ if($_POST)
+ {
+  $host="localhost";
+  $user ="root";
+  $pass ="";
+  $db ="halifax";
+
+  $username = $_POST['username'];
 	$password = $_POST['password'];
-	
-  // Database connection
-	$conn = new mysqli('localhost','root','','halifax');
-	if($conn->connect_error){
-		echo "$conn->connect_error";
-		die("Connection Failed : ". $conn->connect_error);
-	} else {
-		$query = "SELECT * FROM admin_users WHERE username = '$username' AND password = '$password'";
-    $result = mysqli_query($conn, $query);
-    if($result && mysqli_num_rows($result)> 0)
-    {
-      $user_data = mysqli_fetch_assoc($result);
-        return $user_data;
-    }
-      
-		$conn->close();
-	}
+
+  $conn = mysqli_connect($host,$user,$pass,$db);
+  $query = "SELECT * FROM users WHERE username = '$username' AND password = '$password'";
+  $result = mysqli_query($conn, $query);
+  if(mysqli_num_rows($result)==1)
+  {
+    session_start();
+    $_SESSION['halifax'] ='true';
+    header('location:admin-add.php');
+
+  }
+  else {echo'wrong username or password';}
+ }
 ?>
 
 <!DOCTYPE html>
@@ -31,18 +33,15 @@
       <title>Halifax Canoe & Kayak</title>
     
     <style>
-      body {
-        font-family: Arial, Helvetica, sans-serif;
-      }
+      
       input[type=text], input[type=password] {
         width: 100%;
         padding: 12px 20px;
         margin: 8px 0;
-        display: inline-block;
         border: 1px solid #ccc;
         box-sizing: border-box;
       }
-      button {
+      .button {
         background-color: #04AA6D;
         color: white;
         padding: 14px 20px;
@@ -51,73 +50,49 @@
         cursor: pointer;
         width: 100%;
       }
-      button:hover {
+      .button:hover {
         opacity: 0.8;
       }
-      span.psw {
-        float: right;
-        padding-top: 16px;
-      }
-
-      /* Change styles for span and cancel button on extra small screens */
-      @media screen and (max-width: 300px) {
-        span.psw {
-          display: block;
-          float: none;
+      .container {
+          border-radius: 5px;
+          padding: 20px;
         }
-      }
-    </style>
+
+      </style>
     </head>
     
-<body>
-
-  <div class="navbar">
-    <div id="mySidepanel" class="sidepanel">
-      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-      <a href="index.php">Home</a>
-      <a href="book.php">Book Trip</a>
-      <a href="admin-login.php">Admin Login</a>
+  <body>
+    
+    <div class="navbar">
+      <div id="mySidepanel" class="sidepanel">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="index.php">Home</a>
+        <a href="book.php">Book Trip</a>
+        <a href="admin-login.php">Admin Login</a>
+      </div>
+      <button class="openbtn" onclick="openNav()">&#9776;</button>
+      <h1 class="logo-heading">Halifax Canoe & Kayak</h1>
+      <img class="logo" src="Images/paddle-white.png"> 
     </div>
-  
-    <button class="openbtn" onclick="openNav()">&#9776;</button>
-    
-    <h1 class="logo-heading">Halifax Canoe & Kayak</h1>
-  
-    <img class="logo" src="Images/paddle-white.png"> 
-  
-  </div>
 
+    <main>
+      <div class="container">
+        <h1 style="font-size:30px; text-align:left">Login Form</h1><hr>
+      </div>
 
+      <form method="POST">
+        <div class="container">
+          <label for="username"><b>Username</b></label>
+          <input type="text" placeholder="Enter Username" name="username" required>
+          <label for="password"><b>Password</b></label>
+          <input type="password" placeholder="Enter Password" name="password" required>
+          <button class="button" type="submit" value="login">Login</button>
+        </div>
+      </form>
+    </main>
 
-  <div class="container">
-
-    <h1 style="font-size:30px; text-align:left">Login Form</h1><hr>
-    
-    
-  </div>
-
-
-
-<form action="admin-add.php" method="POST">
-  
-
-  <div class="container">
-    <label for="uname"><b>Username</b></label>
-    <input type="text" placeholder="Enter Username" name="username" required>
-
-    <label for="psw"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="password" required>
-        
-    <button type="submit">Login</button>
-    
-  </div>
-
-  
-</form>
-
-
-<script src="index.js"></script>
-</body>
+    <script src="index.js"></script>
+  </body>
 </html>
 
 
