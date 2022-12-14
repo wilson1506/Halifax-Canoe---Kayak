@@ -1,7 +1,6 @@
 <?php
 $conn = mysqli_connect("localhost", "root", "", "halifax");
-$result = mysqli_query($conn, "SELECT * FROM content");
-
+$result = mysqli_query($conn, "SELECT * FROM content WHERE id='" . $_GET["id"] . "'");
 ?>
 
 <!DOCTYPE html>
@@ -28,15 +27,16 @@ $result = mysqli_query($conn, "SELECT * FROM content");
         </div>
   
         <main class="container">
-        <div class="banner">Come Experience<br>Canada</div>
-        <h1>Upcoming Adventures</h1><hr>
+        
+        
         <?php
               while($r = mysqli_fetch_array($result))
               {
               ?>
           
             <div class="activities">
-              <h2><?php echo "<a href='page.php?id=" . $r['id'] . "'>" . $r['heading'] . "</a>";?></h2>
+              <h1><?php echo $r['heading']; ?></h1><hr>
+                <br>
                 <p>Date: <?php echo $r['tripdate']; ?></p>
                 <p>Duration: <?php echo $r['duration']; ?></p>
                 <h3>Summary</h3>

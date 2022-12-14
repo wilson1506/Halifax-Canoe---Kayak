@@ -1,29 +1,4 @@
-<!-- Cleaned up-->
-<?php
- if($_POST)
- {
-  $host="localhost";
-  $user ="root";
-  $pass ="";
-  $db ="halifax";
 
-  $username = $_POST['username'];
-	$p = $_POST['password'];
-
-
-  $conn = mysqli_connect($host,$user,$pass,$db);
-  $query = "SELECT password_has FROM users WHERE username = '$username' AND password = '$password'";
-  $result = mysqli_query($conn, $query);
-  if(mysqli_num_rows($result)==1)
-  {
-    session_start();
-    $_SESSION['halifax'] ='true';
-    header('location:admin-add.php');
-
-  }
-  else {echo "<script>alert('wrong username or password or to Signup, please create a new login using the provided form')</script>";}
- }
-?>
 
 <!DOCTYPE html>
   <html lang="en">
@@ -78,16 +53,16 @@
 
     <main>
       <div class="container">
-        <h1 style="font-size:30px; text-align:left">Login Form</h1><hr>
+        <h1 style="font-size:30px; text-align:left">Signup Form</h1><hr>
       </div>
 
-      <form method="POST">
+      <form  action="thankadmin.php" method="POST">
         <div class="container">
           <label for="username"><b>Username</b></label>
           <input type="text" placeholder="Enter Username" name="username" required>
           <label for="password"><b>Password</b></label>
           <input type="password" placeholder="Enter Password" name="password" required>
-          <button class="button" type="submit" value="login">Login</button>
+          <button class="button" type="submit" >Signup</button>
         </div>
       </form>
     </main>
@@ -95,5 +70,4 @@
     <script src="index.js"></script>
   </body>
 </html>
-
 
