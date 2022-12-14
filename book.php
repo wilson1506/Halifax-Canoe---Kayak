@@ -107,7 +107,7 @@ $result = mysqli_query($conn, "SELECT * FROM content");
           <label for="tripdate">Date</label>
         </div>
         <div class="col-75">
-          <input style="width:200px; height: 40px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;" type="date" id="tripdate" name="tripdate" >
+          <input style="width:200px; height: 40px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;" type="date" id="tripdate" name="tripdate" value="<?php echo $r['tripdate']; ?>" >
         </div>
       </div>
       

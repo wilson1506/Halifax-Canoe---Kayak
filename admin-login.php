@@ -8,17 +8,23 @@
   $db ="halifax";
 
   $username = $_POST['username'];
-	$p = $_POST['password'];
+	$password = $_POST['password'];
 
 
   $conn = mysqli_connect($host,$user,$pass,$db);
-  $query = "SELECT password_has FROM users WHERE username = '$username' AND password = '$password'";
+  $query = "SELECT password FROM users WHERE username = '$username' AND password = '$password'";
   $result = mysqli_query($conn, $query);
   if(mysqli_num_rows($result)==1)
   {
+    
     session_start();
     $_SESSION['halifax'] ='true';
     header('location:admin-add.php');
+
+    if (password_verify($password, $data['password'])) {
+      
+      } else
+    $msg = "Please check your inputs!";
 
   }
   else {echo "<script>alert('wrong username or password or to Signup, please create a new login using the provided form')</script>";}
@@ -95,5 +101,6 @@
     <script src="index.js"></script>
   </body>
 </html>
+
 
 
